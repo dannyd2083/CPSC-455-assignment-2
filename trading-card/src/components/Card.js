@@ -5,7 +5,7 @@ import img from './coin.png';
 const Card = (props) => {
 
     return (
-        <div>
+        <div style ={{ backgroundImage: `url(${props.card.URL})`}}>
             <div>
                 <Traits traits = {props.card.Traits}/>
             </div>
