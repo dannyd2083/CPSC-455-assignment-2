@@ -151,6 +151,19 @@ input[type=submit],input[type=reset],input[type=button]{
     background-color: #8c8c8c;
 }
 
+.single-card-interact{
+    color: #8c8c8c;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    cursor: pointer;
+}
+
+.single-card-interact a:hover{
+    transform: scale(1.5);
+}
+
+
 .coin{
     display: flex;
     flex-direction: row;
