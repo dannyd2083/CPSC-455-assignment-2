@@ -1,21 +1,25 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Traits from "./Traits";
 import img from './coin.png';
 import {FaTimes, FaInfoCircle} from "react-icons/fa";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {deleteCard} from "./Actions/actions";
-
+import Popup from "./Popup";
 const Card = (props) => {
-
-    const cards = useSelector(state => state.manager);
     const dispatch = useDispatch();
+    const [popModel,setPopModel] = useState(false);
+
+    const openPopup = () => {
+        setPopModel(prev =>!prev);
+    }
     return (
         <div style ={{ backgroundImage: `url(${props.card.URL})`}}>
             <div>
                 <Traits traits = {props.card.Traits}/>
                 <div className='single-card-interact'>
                     <a onClick={()=> dispatch(deleteCard(props.card.id))}><FaTimes/></a>
-                    <a><FaInfoCircle/></a>
+                    <a onClick={openPopup}> <FaInfoCircle/></a>
+                    <Popup popModel = {popModel} setPopModel = {setPopModel} image = {props.card.URL}/>
                 </div>
             </div>
             <div className="name-coin">

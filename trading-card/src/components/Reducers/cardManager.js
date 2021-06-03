@@ -1,5 +1,3 @@
-import {useState} from "react";
-
 
 let aatroxString = '{"id": "1", "name": "Aatrox", "Traits": ["Redeemed", "Legionnaire"], "Price": "1", "URL": "https://fastcdn.mobalytics.gg/assets/tft/images/champions/thumbnail/set5/aatrox.jpg"}';
 let gragasString = '{"id": "2", "name": "Gragas", "Traits": ["Dawnbringer", "Brawler"], "Price": "1", "URL": "https://fastcdn.mobalytics.gg/assets/tft/images/champions/thumbnail/set5/gragas.jpg"}';
@@ -33,15 +31,33 @@ const initialCardArray = []
 
 initialCardArray.push(aatrox,gragas,leona,kalista,khazix,kled,lissandra,poppy,udyr,vayne,vladimir,warwick,ziggs)
 
+const makeNewCard = (name,traits,price,url) => {
+    let traitsArray = traits.split(',')
+    const newCard = {
+        id: Date.now(),
+        name: name,
+        Traits: traitsArray,
+        price: price,
+        URL:url
+    }
+    return newCard
+}
 
-const cardManagerReducer = (state = initialCardArray , action) =>{
+
+const cardManagerReducer = (cardState = initialCardArray , action) =>{
     switch (action.type) {
         case 'ADD' :
-            return state[0];
+            let newCard = makeNewCard(action.payload.name,action.payload.traits,action.payload.price,action.payload.URL);
+            let newState = cardState.concat(newCard);
+            return newState;
         case 'DEL' :
-            return state.filter((card) => (card.id !== action.payload))
+            return cardState.filter((card) => (card.id !== action.payload))
+        case 'RELOAD':
+            return initialCardArray;
+        case 'DELALL':
+            return [];
         default :
-            return state;
+            return cardState;
     }
 };
 
