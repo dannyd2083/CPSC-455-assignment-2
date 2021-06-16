@@ -3,7 +3,7 @@ import {combineReducers} from "redux";
 
 
 const allReducers = combineReducers({
-    manager: cardManagerReducer
+   cardManagerReducer
 });
 
 export default allReducers;
