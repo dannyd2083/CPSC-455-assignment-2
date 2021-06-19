@@ -1,3 +1,4 @@
+import axios from "axios";
 
 export const deleteCard = (id) => {
     return {
@@ -19,8 +20,16 @@ export const deleteAll = () => {
     }
 }
 
-export const reload = () => {
+
+export const reload = (payload) =>{
     return{
-        type:"RELOAD"
+        type: "RELOAD",
+        payload: payload
     }
 }
+
+//
+//     fetch('http://localhost:5000/')
+//         .then(res => res.json())
+//         .then(cards => x ({type: 'RELOAD',payload:cards }))
+// }

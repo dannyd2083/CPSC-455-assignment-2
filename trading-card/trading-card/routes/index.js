@@ -37,4 +37,23 @@ router.get('/', function(req, res, next) {
   res.json(initialCardArray);
 });
 
+router.get('/img', function(req, res, next) {
+  res.json(initialCardArray.map(card => ({
+    id: card.id,
+    URL: card.URL})));
+});
+
+router.post('/',function (req,res){
+  initialCardArray.push(req.body);
+  res.json(initialCardArray);
+})
+
+router.delete('/', function (req, res){
+  console.log(req.body.id);
+  console.log (initialCardArray.map(card => card.id));
+  initialCardArray.filter(card => card.id !== req.body.id);
+  console.log(initialCardArray);
+  res.json(initialCardArray);
+})
+
 module.exports = router;

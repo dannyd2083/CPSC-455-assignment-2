@@ -34,7 +34,9 @@
 
 // const initialCardArray = fetch('/');
 
-const makeNewCard = (name,traits,price,url) => {
+import axios from "axios";
+
+const makeNewCard = (name, traits, price, url) => {
     let traitsArray = traits.split(',')
     const newCard = {
         id: Date.now(),
@@ -46,6 +48,17 @@ const makeNewCard = (name,traits,price,url) => {
     return newCard
 }
 
+// function axiosTest() {
+//     const response = axios.get('http://localhost:5000/').then((response) => {
+//         console.log(response.data);
+//         return response.data;
+//     }).catch((err) => {
+//         console.log(err);
+//     });
+//     // console.log(response.data);
+//     // return Promise.resolve(axios.get('http://localhost:5000/'));
+// }
+
 
 const cardManagerReducer = (cardState = [] , action) =>{
     switch (action.type) {
@@ -56,8 +69,11 @@ const cardManagerReducer = (cardState = [] , action) =>{
         case 'DEL' :
             return cardState.filter((card) => (card.id !== action.payload))
         case 'RELOAD':
-            return [];
+            return  action.payload;
+            // console.log(newS);
+            // return axiosTest();
         case 'DELALL':
+            console.log(cardState);
             return [];
         default :
             return cardState;

@@ -2,6 +2,7 @@ import React from 'react';
 import {useState} from "react";
 import {useDispatch} from "react-redux";
 import {addCard, deleteAll, reload} from "./Actions/actions";
+import axios from "axios";
 
 const Form = () => {
     const dispatch = useDispatch();
@@ -10,10 +11,19 @@ const Form = () => {
     const [price, setPrice] = useState();
     const [url,setURL] = useState();
 
-    const onSubmit = (event) => {
+    const onSubmit = async (event) => {
         event.preventDefault();
-        if(name && traits && price && url) {
-            dispatch(addCard(name,traits,price,url));
+        if (name && traits && price && url) {
+            let traitsArray = traits.split(',')
+            let payload = {
+                id: Date.now(),
+                name: name,
+                Traits: traitsArray,
+                price: price,
+                URL:url
+            }
+             await axios.post('http://localhost:5000/', payload);
+            dispatch(addCard(name, traits, price, url));
         }
     }
 
@@ -22,8 +32,10 @@ const Form = () => {
         // console.log("hello");
     }
 
-    const onReload = () => {
-        dispatch(reload());
+    const onReload = async () => {
+        const response = await axios.get('http://localhost:5000/');
+        console.log("response: " + response.data);
+        dispatch(reload(response.data))
     }
 
     return (
@@ -39,12 +51,13 @@ const Form = () => {
                 <label for="URL"> Image URL: </label>
                 <input type="url" id="URL" name="url" value={url} onChange={(e) => setURL(e.target.value)}/>
                 <input type="submit" value="Submit" id="submit"/>
+            </form>
                 <input type="reset" id="reset-form"/>
                 <label for="DeleteAll" id="DeleteAllLabel">Delete All Card:</label>
                 <button onClick={()=>onDeleteAll()} value="delete" id="DeleteAll">  Delete All </button>
                 <label for="Reload" id="ReloadInitial">Reload:</label>
                 <button onClick={()=>onReload()} value="Reload" id="Reload"> Reload </button>
-            </form>
+
         </div>
     );
 };
