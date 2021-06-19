@@ -6,12 +6,22 @@ import {useDispatch} from "react-redux";
 import {deleteCard} from "./Actions/actions";
 import Popup from "./Popup";
 import axios from "axios";
+
+
+let ImageArray = []
+let imgURL
+
 const Card = (props) => {
     const dispatch = useDispatch();
     const [popModel,setPopModel] = useState(false);
 
-    const openPopup = () => {
-        setPopModel(prev =>!prev);
+
+    const openPopup = async () => {
+        setPopModel(prev => !prev);
+        ImageArray = await axios.get('http://localhost:5000/img')
+        console.log(ImageArray);
+        imgURL = ImageArray.data.find(card => card.id === props.card.id).URL;
+        console.log("imgURL" + imgURL);
     }
 
     const onDelete = async () => {
@@ -26,7 +36,7 @@ const Card = (props) => {
                 <div className='single-card-interact'>
                     <a onClick={()=> onDelete()}><FaTimes/></a>
                     <a onClick={openPopup}> <FaInfoCircle/></a>
-                    <Popup popModel = {popModel} setPopModel = {setPopModel} image = {props.card.URL}/>
+                    <Popup popModel = {popModel} setPopModel = {setPopModel} image = {imgURL}/>
                 </div>
             </div>
             <div className="name-coin">

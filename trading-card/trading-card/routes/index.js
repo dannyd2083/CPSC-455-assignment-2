@@ -28,7 +28,7 @@ let vladimir = JSON.parse(vladimirString);
 let warwick = JSON.parse(warwickString);
 let ziggs = JSON.parse(ziggsString);
 
-const initialCardArray = []
+let initialCardArray = []
 
 initialCardArray.push(aatrox,gragas,leona,kalista,khazix,kled,lissandra,poppy,udyr,vayne,vladimir,warwick,ziggs)
 
@@ -51,7 +51,7 @@ router.post('/',function (req,res){
 router.delete('/', function (req, res){
   console.log(req.body.id);
   console.log (initialCardArray.map(card => card.id));
-  initialCardArray.filter(card => card.id !== req.body.id);
+  initialCardArray = initialCardArray.filter(card => card.id !== req.body.id);
   console.log(initialCardArray);
   res.json(initialCardArray);
 })
