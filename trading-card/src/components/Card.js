@@ -25,8 +25,9 @@ const Card = (props) => {
     }
 
     const onDelete = async () => {
-        await axios.delete('http://localhost:5000/',{ data: { id: props.card.id } });
-        dispatch(deleteCard(props.card.id))
+        console.log(props.card._id);
+        await axios.delete('http://localhost:5000/',{ data: { id: props.card._id } });
+        dispatch(deleteCard(props.card._id))
     }
 
     return (

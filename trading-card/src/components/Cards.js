@@ -8,7 +8,7 @@ const Cards = () => {
     return (
         <div className='current-card-div'>
             {cards.map((card)=>
-                (<Card key = {card.id} card = {card} />))}
+                (<Card key = {card._id} card = {card} />))}
         </div>
     );
 };

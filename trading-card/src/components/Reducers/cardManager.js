@@ -35,11 +35,11 @@
 // const initialCardArray = fetch('/');
 
 import axios from "axios";
+import {act} from "@testing-library/react";
 
 const makeNewCard = (name, traits, price, url) => {
     let traitsArray = traits.split(',')
     const newCard = {
-        id: Date.now(),
         name: name,
         Traits: traitsArray,
         price: price,
@@ -67,7 +67,8 @@ const cardManagerReducer = (cardState = [] , action) =>{
             let newState = cardState.concat(newCard);
             return newState;
         case 'DEL' :
-            return cardState.filter((card) => (card.id !== action.payload))
+            console.log(action.payload)
+            return cardState.filter((card) => (card._id !== action.payload))
         case 'RELOAD':
             return  action.payload;
             // console.log(newS);

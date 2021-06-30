@@ -16,10 +16,9 @@ const Form = () => {
         if (name && traits && price && url) {
             let traitsArray = traits.split(',')
             let payload = {
-                id: Date.now(),
                 name: name,
                 Traits: traitsArray,
-                price: price,
+                Price: price,
                 URL:url
             }
              await axios.post('http://localhost:5000/', payload);
