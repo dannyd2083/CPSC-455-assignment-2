@@ -7,13 +7,10 @@ import {deleteCard} from "./Actions/actions";
 import Popup from "./Popup";
 import axios from "axios";
 
-
-let ImageArray = []
-let imgURL
-
 const Card = (props) => {
     const dispatch = useDispatch();
     const [popModel,setPopModel] = useState(false);
+    const [imgURL, setURL] = useState(undefined);
 
 
     const openPopup = async (id) => {
@@ -24,7 +21,7 @@ const Card = (props) => {
         console.log(params)
         const res = await axios.get('http://localhost:5000/img', {params})
         console.log(res.data)
-        imgURL = res.data.URL;
+        setURL(res.data.URL);
         console.log(imgURL);
     }
 
@@ -41,7 +38,7 @@ const Card = (props) => {
                 <div className='single-card-interact'>
                     <a onClick={()=> onDelete()}><FaTimes/></a>
                     <a onClick={() => openPopup(props.card._id)}> <FaInfoCircle/></a>
-                    <Popup popModel = {popModel} setPopModel = {setPopModel} image = {imgURL}/>
+                    <Popup popModel = {popModel} setPopModel = {setPopModel}  image = {imgURL}/>
                 </div>
             </div>
             <div className="name-coin">
