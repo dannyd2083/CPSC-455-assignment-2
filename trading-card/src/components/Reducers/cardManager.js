@@ -63,9 +63,10 @@ const makeNewCard = (name, traits, price, url) => {
 const cardManagerReducer = (cardState = [] , action) =>{
     switch (action.type) {
         case 'ADD' :
-            let newCard = makeNewCard(action.payload.name,action.payload.traits,action.payload.price,action.payload.URL);
-            let newState = cardState.concat(newCard);
-            return newState;
+            // let newCard = makeNewCard(action.payload.name,action.payload.traits,action.payload.price,action.payload.URL);
+            // let newState = cardState.concat(newCard);
+            return action.payload;
+            // return action.payload;
         case 'DEL' :
             console.log(action.payload)
             return cardState.filter((card) => (card._id !== action.payload))

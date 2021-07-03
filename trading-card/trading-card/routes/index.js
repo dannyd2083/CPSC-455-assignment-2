@@ -42,19 +42,21 @@ router.get('/', async function(req, res, next) {
   res.json(records)
 });
 
-router.get('/img', function(req, res, next) {
-  res.json(initialCardArray.map(card => ({
-    id: card.id,
-    URL: card.URL})));
+router.get('/img', async function(req, res, next) {
+  // console.log(req.query.id)
+  let param = req.query.cardId
+  console.log(param)
+  const records = await cards.findById(param,'URL')
+  console.log(records)
+  res.json(records)
 });
 
 router.post('/',async function (req,res){
   // initialCardArray.push(req.body);
   const record = req.body
-  console.log(record);
+  // console.log("when add new card (body): "+ record);
   const response = await cards.create(record)
-  console.log(response)
-
+  // console.log("when add new card (res): " + response)
   res.json({status: 'ok'});
 })
 

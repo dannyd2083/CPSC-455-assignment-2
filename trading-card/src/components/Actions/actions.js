@@ -7,10 +7,17 @@ export const deleteCard = (id) => {
     };
 };
 
-export const addCard = (name,traits,price,url) => {
+// export const addCard = (name,traits,price,url) => {
+//     return {
+//         type: 'ADD',
+//         payload: {name: name, traits: traits ,price: price, URL: url}
+//     }
+// }
+
+export const addCard = (payload) => {
     return {
         type: 'ADD',
-        payload: {name: name, traits: traits ,price: price, URL: url}
+        payload: payload
     }
 }
 

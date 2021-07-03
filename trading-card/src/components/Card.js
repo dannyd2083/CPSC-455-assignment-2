@@ -16,12 +16,16 @@ const Card = (props) => {
     const [popModel,setPopModel] = useState(false);
 
 
-    const openPopup = async () => {
+    const openPopup = async (id) => {
         setPopModel(prev => !prev);
-        ImageArray = await axios.get('http://localhost:5000/img')
-        console.log(ImageArray);
-        imgURL = ImageArray.data.find(card => card.id === props.card.id).URL;
-        console.log("imgURL" + imgURL);
+        const params = {
+            cardId: id
+        }
+        console.log(params)
+        const res = await axios.get('http://localhost:5000/img', {params})
+        console.log(res.data)
+        imgURL = res.data.URL;
+        console.log(imgURL);
     }
 
     const onDelete = async () => {
@@ -36,7 +40,7 @@ const Card = (props) => {
                 <Traits traits = {props.card.Traits}/>
                 <div className='single-card-interact'>
                     <a onClick={()=> onDelete()}><FaTimes/></a>
-                    <a onClick={openPopup}> <FaInfoCircle/></a>
+                    <a onClick={() => openPopup(props.card._id)}> <FaInfoCircle/></a>
                     <Popup popModel = {popModel} setPopModel = {setPopModel} image = {imgURL}/>
                 </div>
             </div>

@@ -22,7 +22,9 @@ const Form = () => {
                 URL:url
             }
              await axios.post('http://localhost:5000/', payload);
-            dispatch(addCard(name, traits, price, url));
+             const res = await axios.get('http://localhost:5000/');
+            // dispatch(addCard(name, traits, price, url));
+            dispatch(addCard(res.data))
         }
     }
 
@@ -54,8 +56,8 @@ const Form = () => {
                 <input type="reset" id="reset-form"/>
                 <label for="DeleteAll" id="DeleteAllLabel">Delete All Card:</label>
                 <button onClick={()=>onDeleteAll()} value="delete" id="DeleteAll">  Delete All </button>
-                <label for="Reload" id="ReloadInitial">Reload:</label>
-                <button onClick={()=>onReload()} value="Reload" id="Reload"> Reload </button>
+                {/*<label for="Reload" id="ReloadInitial">Reload:</label>*/}
+                {/*<button onClick={()=>onReload()} value="Reload" id="Reload"> Reload </button>*/}
 
         </div>
     );
