@@ -11,6 +11,7 @@ const Card = (props) => {
     const dispatch = useDispatch();
     const [popModel,setPopModel] = useState(false);
     const [imgURL, setURL] = useState(undefined);
+    const [cardDate, setDate] = useState(undefined);
 
 
     const openPopup = async (id) => {
@@ -19,9 +20,11 @@ const Card = (props) => {
             cardId: id
         }
         console.log(params)
-        const res = await axios.get('http://localhost:5000/img', {params})
-        console.log(res.data)
-        setURL(res.data.URL);
+        const URLres = await axios.get('http://localhost:5000/img', {params})
+        const DateRes= await axios.get('http://localhost:5000/date', {params})
+        console.log(URLres.data)
+        setURL(URLres.data.URL);
+        setDate(DateRes.data.Date);
         console.log(imgURL);
     }
 
@@ -38,7 +41,7 @@ const Card = (props) => {
                 <div className='single-card-interact'>
                     <a onClick={()=> onDelete()}><FaTimes/></a>
                     <a onClick={() => openPopup(props.card._id)}> <FaInfoCircle/></a>
-                    <Popup popModel = {popModel} setPopModel = {setPopModel}  image = {imgURL}/>
+                    <Popup popModel = {popModel} setPopModel = {setPopModel}  image = {imgURL} date = {cardDate}/>
                 </div>
             </div>
             <div className="name-coin">

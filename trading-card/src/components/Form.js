@@ -15,11 +15,14 @@ const Form = () => {
         event.preventDefault();
         if (name && traits && price && url) {
             let traitsArray = traits.split(',')
+            let today = new Date();
+            let date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate() + ' ' + today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
             let payload = {
                 name: name,
                 Traits: traitsArray,
                 Price: price,
-                URL:url
+                URL:url,
+                Date: date
             }
              await axios.post('http://localhost:5000/', payload);
              const res = await axios.get('http://localhost:5000/');
