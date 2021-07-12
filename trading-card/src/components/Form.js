@@ -10,10 +10,13 @@ const Form = () => {
     const [traits,setTraits] = useState();
     const [price, setPrice] = useState();
     const [url,setURL] = useState();
+    const [imgErr, setImageErr] = useState({});
 
     const onSubmit = async (event) => {
         event.preventDefault();
-        if (name && traits && price && url) {
+        const isValid = formValidation();
+        console.log(isValid);
+        if (name && traits && price && url && isValid) {
             let traitsArray = traits.split(',')
             let today = new Date();
             let date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate() + ' ' + today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
@@ -29,6 +32,27 @@ const Form = () => {
             // dispatch(addCard(name, traits, price, url));
             dispatch(addCard(res.data))
         }
+    }
+
+    const formValidation = () =>{
+        const imgErr = {};
+        let isValid = true;
+        let bool = checkImage(url)
+        console.log(bool);
+        if (bool === false){
+            imgErr.invalid = "Invalid URL"
+            isValid = false;
+            console.log("hello")
+        }
+        setImageErr(imgErr);
+        return isValid
+    }
+
+    function checkImage(url) {
+        let http = new XMLHttpRequest();
+        http.open('HEAD',url,false);
+        http.send();
+        return http.status != 404;
     }
 
     const onDeleteAll = () => {
@@ -54,6 +78,7 @@ const Form = () => {
                 <input type="number" id="Price" name="price" min="1" max="5" value={price} onChange={(e) => setPrice(e.target.value)}/>
                 <label for="URL"> Image URL: </label>
                 <input type="url" id="URL" name="url" value={url} onChange={(e) => setURL(e.target.value)}/>
+                {Object.keys(imgErr).map((key)=>{return <div style={{color : "white"}}> {imgErr[key]} </div> })}
                 <input type="submit" value="Submit" id="submit"/>
             </form>
                 <input type="reset" id="reset-form"/>

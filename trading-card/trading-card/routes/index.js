@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-
 const cards = require('../models/cardTemplate')
 
 // let aatroxString = '{"id": "1", "name": "Aatrox", "Traits": ["Redeemed", "Legionnaire"], "Price": "1", "URL": "https://fastcdn.mobalytics.gg/assets/tft/images/champions/thumbnail/set5/aatrox.jpg"}';
@@ -69,16 +68,16 @@ router.post('/',async function (req,res){
   res.json({status: 'ok'});
 })
 
-router.delete('/',  async function (req, res){
+router.post('/delete',  async function (req, res){
   // console.log(req.body.id);
   // console.log (initialCardArray.map(card => card.id));
   // initialCardArray = initialCardArray.filter(card => card.id !== req.body.id);
   // console.log(initialCardArray);
   // res.json(initialCardArray);
-  const {record} =req.body;
-  // console.log(record)
-  const response = await cards.deleteOne({record});
-  // console.log(response)
+  const record = req.body.id;
+  console.log(record, '/api/delete')
+  const response = await cards.deleteOne({_id: record});
+  console.log(response)
   res.json({status: 'ok'});
 })
 
