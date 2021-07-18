@@ -8,7 +8,9 @@ const mongoose = require('mongoose');
 var indexRouter = require('./routes/index');
 var app = express();
 
-mongoose.connect('mongodb://localhost/cardsdb',{useNewUrlParser: true,useUnifiedTopology: true});
+// mongoose.connect('mongodb://localhost/cardsdb',{useNewUrlParser: true,useUnifiedTopology: true});
+mongoose.connect('mongodb+srv://m001-student:m001-mongodb-basics@sandbox.ne4ps.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',{useNewUrlParser: true,useUnifiedTopology: true});
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

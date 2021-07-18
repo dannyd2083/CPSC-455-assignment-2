@@ -81,7 +81,7 @@ const Form = () => {
                 {Object.keys(imgErr).map((key)=>{return <div style={{color : "white"}}> {imgErr[key]} </div> })}
                 <input type="submit" value="Submit" id="submit"/>
             </form>
-                <input type="reset" id="reset-form"/>
+                {/*<input type="reset" id="reset-form"/>*/}
                 <label for="DeleteAll" id="DeleteAllLabel">Delete All Card:</label>
                 <button onClick={()=>onDeleteAll()} value="delete" id="DeleteAll">  Delete All </button>
                 {/*<label for="Reload" id="ReloadInitial">Reload:</label>*/}
