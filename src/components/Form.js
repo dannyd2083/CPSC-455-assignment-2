@@ -1,7 +1,7 @@
 import React from 'react';
 import {useState} from "react";
 import {useDispatch} from "react-redux";
-import {addCard, deleteAll, reload} from "./Actions/actions";
+import {addCard, deleteAll} from "./Actions/actions";
 import axios from "axios";
 
 const Form = () => {
@@ -52,7 +52,7 @@ const Form = () => {
         let http = new XMLHttpRequest();
         http.open('HEAD',url,false);
         http.send();
-        return http.status != 404;
+        return http.status !== 404;
     }
 
     const onDeleteAll = () => {
@@ -60,11 +60,11 @@ const Form = () => {
         // console.log("hello");
     }
 
-    const onReload = async () => {
-        const response = await axios.get('http://localhost:5000/');
-        console.log("response: " + response.data);
-        dispatch(reload(response.data))
-    }
+    // const onReload = async () => {
+    //     const response = await axios.get('http://localhost:5000/');
+    //     console.log("response: " + response.data);
+    //     dispatch(reload(response.data))
+    // }
 
     return (
         <div className='addCard-div'>

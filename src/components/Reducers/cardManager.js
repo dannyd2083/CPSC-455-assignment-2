@@ -34,19 +34,18 @@
 
 // const initialCardArray = fetch('/');
 
-import axios from "axios";
-import {act} from "@testing-library/react";
 
-const makeNewCard = (name, traits, price, url) => {
-    let traitsArray = traits.split(',')
-    const newCard = {
-        name: name,
-        Traits: traitsArray,
-        price: price,
-        URL:url
-    }
-    return newCard
-}
+
+// const makeNewCard = (name, traits, price, url) => {
+//     let traitsArray = traits.split(',')
+//     const newCard = {
+//         name: name,
+//         Traits: traitsArray,
+//         price: price,
+//         URL:url
+//     }
+//     return newCard
+// }
 
 // function axiosTest() {
 //     const response = axios.get('http://localhost:5000/').then((response) => {

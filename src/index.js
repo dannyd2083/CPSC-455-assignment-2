@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import {createStore} from "redux";
 import allReducers from "./components/Reducers";
 import {Provider} from "react-redux";
-import cardManagerReducer from "./components/Reducers/cardManager";
+
 
 
 // const store = createStore(allReducers,

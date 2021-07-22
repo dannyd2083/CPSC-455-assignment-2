@@ -48,7 +48,7 @@ const Card = (props) => {
             <div className="name-coin">
                 <span>{props.card.name}</span>
                 <div className ="coin">
-                    <img src={img} style={{width: 20 ,height: 20}}/>
+                    <img src={img} alt = "coin" style={{width: 20 ,height: 20}}/>
                     {props.card.Price}
                 </div>
             </div>

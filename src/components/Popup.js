@@ -1,5 +1,4 @@
 import React from 'react';
-import {deleteCard} from "./Actions/actions";
 import {FaTimes} from "react-icons/fa";
 
 function Popup ({popModel,setPopModel,image,date}){
