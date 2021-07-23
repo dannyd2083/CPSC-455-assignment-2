@@ -12,7 +12,7 @@ import axios from "axios";
 
 // const store = createStore(allReducers,
 //     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
-const port = process.env.PORT || "http://localhost:5000"
+const port = "https://tft-trading-card.herokuapp.com" || "http://localhost:5000"
 const baseUrl = `${port}/api`
 axios.defaults.baseURL = baseUrl;
 
