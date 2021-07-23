@@ -27,4 +27,4 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "tft-trading-card"
           heroku_email: "dengzecheng@hotmail.com"
-          branch: "Assignment-5"
+          branch: Assignment-5
