@@ -12,13 +12,15 @@ import axios from "axios";
 
 // const store = createStore(allReducers,
 //     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
-const port = process.env.REACT_APP_PORT || "http://localhost:5000"
-const baseUrl = `${port}/api`
-axios.defaults.baseURL = baseUrl;
+// const port = "http://localhost:5000"
+// const baseUrl = `${port}/api`
+axios.defaults.baseURL = "/api";
 
-fetch(baseUrl).then(res => res.json()).then((initalState) => {
+
+axios.get("/").then((initalState) => {
+    console.log(initalState);
     let persistedState = {
-        cardManagerReducer: initalState,
+        cardManagerReducer: initalState.data,
     };
     ReactDOM.render(
         <React.StrictMode>
