@@ -8,6 +8,7 @@ on:
   push:
     branches:
       - main
+      - Assignment-5
 
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -26,4 +27,3 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "tft-trading-card"
           heroku_email: "dengzecheng@hotmail.com"
-          branch: Assignment-5
