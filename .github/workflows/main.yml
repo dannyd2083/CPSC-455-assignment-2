@@ -7,8 +7,6 @@ on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches:
-      - Assignment-5
-      - main
       - master
 
 
@@ -29,3 +27,4 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "tft-trading-card"
           heroku_email: "dengzecheng@hotmail.com"
+          branch: "Assignment-5"
