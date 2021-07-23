@@ -27,6 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/', indexRouter);
 app.use('/api/img',indexRouter);
 //test for github action comment
+//test 12:14pm for actions
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, "client", "build")))
   app.get("*", (req, res) => {
