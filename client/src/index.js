@@ -18,7 +18,7 @@ axios.defaults.baseURL = "/api";
 
 
 axios.get("/").then((initalState) => {
-    console.log(initalState);
+    // console.log(initalState);
     let persistedState = {
         cardManagerReducer: initalState.data,
     };

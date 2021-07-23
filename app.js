@@ -10,8 +10,8 @@ var app = express();
 
 // mongoose.connect('mongodb://localhost/cardsdb',{useNewUrlParser: true,useUnifiedTopology: true});
 
-// mongoose.connect(process.env.MongoDBURL,{useNewUrlParser: true,useUnifiedTopology: true});
-mongoose.connect('mongodb+srv://m001-student:m001-mongodb-basics@sandbox.ne4ps.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',{useNewUrlParser: true,useUnifiedTopology: true})
+mongoose.connect(process.env.MongoDBURL,{useNewUrlParser: true,useUnifiedTopology: true});
+// mongoose.connect('mongodb+srv://m001-student:m001-mongodb-basics@sandbox.ne4ps.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',{useNewUrlParser: true,useUnifiedTopology: true})
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/', indexRouter);
 app.use('/api/img',indexRouter);
 
-if (true) {
+if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, "client", "build")))
   app.get("*", (req, res) => {
     console.log(process.env.PORT)
