@@ -27,8 +27,8 @@ const Form = () => {
                 URL:url,
                 Date: date
             }
-             await axios.post('http://localhost:5000/', payload);
-             const res = await axios.get('http://localhost:5000/');
+             await axios.post('/', payload);
+             const res = await axios.get('/');
             // dispatch(addCard(name, traits, price, url));
             dispatch(addCard(res.data))
         }
