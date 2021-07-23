@@ -22,7 +22,6 @@ const Card = (props) => {
         console.log(params)
         const URLres = await axios.get('/img', {params})
         const DateRes= await axios.get('/date', {params})
-        console.log(URLres.data)
         setURL(URLres.data.URL);
         setDate(DateRes.data.Date);
         console.log(imgURL);
