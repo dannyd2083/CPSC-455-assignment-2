@@ -6,13 +6,16 @@ import reportWebVitals from './reportWebVitals';
 import {createStore} from "redux";
 import allReducers from "./components/Reducers";
 import {Provider} from "react-redux";
+import axios from "axios";
 
 
 
 // const store = createStore(allReducers,
 //     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const baseUrl = process.env.PORT || "http://localhost:5000";
+axios.defaults.baseURL = process.env.PORT||"http://localhost:5000";
 
-fetch('http://localhost:5000/').then(res => res.json()).then((initalState) => {
+fetch(baseUrl).then(res => res.json()).then((initalState) => {
     let persistedState = {
         cardManagerReducer: initalState,
     };

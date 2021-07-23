@@ -20,8 +20,8 @@ const Card = (props) => {
             cardId: id
         }
         console.log(params)
-        const URLres = await axios.get('http://localhost:5000/img', {params})
-        const DateRes= await axios.get('http://localhost:5000/date', {params})
+        const URLres = await axios.get('/img', {params})
+        const DateRes= await axios.get('/date', {params})
         console.log(URLres.data)
         setURL(URLres.data.URL);
         setDate(DateRes.data.Date);
@@ -31,7 +31,7 @@ const Card = (props) => {
     const onDelete = async () => {
         console.log(props.card._id);
         let payload = {id: props.card._id}
-        await axios.post('http://localhost:5000/delete',payload);
+        await axios.post('/delete',payload);
         dispatch(deleteCard(props.card._id))
     }
 
