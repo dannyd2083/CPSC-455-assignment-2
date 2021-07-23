@@ -20,15 +20,22 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-// app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, "client", "build")))
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-});
+app.use(express.static(path.join(__dirname, 'public')));
 
 
-app.use('/', indexRouter);
-app.use('/img',indexRouter);
+app.use('/api/', indexRouter);
+app.use('/api/img',indexRouter);
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, "client", "build")))
+  app.get("*", (req, res) => {
+    console.log(process.env.PORT)
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+  });
+}
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
